@@ -92,11 +92,9 @@ class FailureDialog extends StatelessWidget {
 
   FailureDialog(
     this.message, {
-    this.title = 
-          'Failure',
-         
-    this    .icon = Icons.warning,
-  });    
+    this.title = 'Failure',
+    this.icon = Icons.warning,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'dao/contact_dao.dart';
+import 'package:alura_crashlytics/database/dao/contact_dao.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

@@ -1,18 +1,12 @@
-import '../http/webclients/transaction_webclient.dart';
-
-import '../components/centered_message.dart';
-import '../components/progress.dart';
-import '../models/transaction.dart';
+import 'package:alura_crashlytics/components/centered_message.dart';
+import 'package:alura_crashlytics/components/progress.dart';
+import 'package:alura_crashlytics/http/webclients/transaction_webclient.dart';
+import 'package:alura_crashlytics/models/transaction.dart';
 import 'package:flutter/material.dart';
 
-class TransactionsList extends StatefulWidget {
-  @override
-  State<TransactionsList> createState() => _TransactionsListState();
-}
+class TransactionsList extends StatelessWidget {
 
-class _TransactionsListState extends State<TransactionsList> {
-
-  final TransactionWebclient _webClient = TransactionWebclient();
+  final TransactionWebClient _webClient = TransactionWebClient();
 
   @override
   Widget build(BuildContext context) {
@@ -27,47 +21,48 @@ class _TransactionsListState extends State<TransactionsList> {
             case ConnectionState.none:
               break;
             case ConnectionState.waiting:
-              return Progress(
-                message: 'Transactionando',
-              );
+              return Progress();
               break;
             case ConnectionState.active:
               break;
             case ConnectionState.done:
-            if(snapshot.hasData){
-               final List<Transaction> transactions = snapshot.data;
-              if (transactions.isNotEmpty) {
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    final Transaction transaction = transactions[index];
-                    return Card(
-                      child: ListTile(
-                        leading: Icon(Icons.monetization_on),
-                        title: Text(
-                          transaction.value.toString(),
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
+              if(snapshot.hasData){
+                final List<Transaction> transactions = snapshot.data;
+                if (transactions.isNotEmpty) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      final Transaction transaction = transactions[index];
+                      return Card(
+                        child: ListTile(
+                          leading: Icon(Icons.monetization_on),
+                          title: Text(
+                            transaction.value.toString(),
+                            style: TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            transaction.contact.accountNumber.toString(),
+                            style: TextStyle(
+                              fontSize: 16.0,
+                            ),
                           ),
                         ),
-                        subtitle: Text(
-                          transaction.contact.accountNumber.toString(),
-                          style: TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: transactions.length,
-                );
+                      );
+                    },
+                    itemCount: transactions.length,
+                  );
+                }
               }
-            }
-              return CenteredMessage('No transactions found',
-                  icon: Icons.warning);
+              return CenteredMessage(
+                'No transactions found',
+                icon: Icons.warning,
+              );
               break;
           }
-          return CenteredMessage('Unknown Error');
+
+          return CenteredMessage('Unknown error');
         },
       ),
     );

@@ -1,9 +1,8 @@
-import 'transaction_form.dart';
-
-import '../components/progress.dart';
-import '../database/dao/contact_dao.dart';
-import '../models/contact.dart';
-import 'contact_form.dart';
+import 'package:alura_crashlytics/components/progress.dart';
+import 'package:alura_crashlytics/database/dao/contact_dao.dart';
+import 'package:alura_crashlytics/models/contact.dart';
+import 'package:alura_crashlytics/screens/contact_form.dart';
+import 'package:alura_crashlytics/screens/transaction_form.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatefulWidget {
@@ -40,8 +39,11 @@ class _ContactsListState extends State<ContactsList> {
                   return _ContactItem(
                     contact,
                     onClick: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => TransactionForm(contact)));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => TransactionForm(contact),
+                        ),
+                      );
                     },
                   );
                 },
@@ -54,13 +56,11 @@ class _ContactsListState extends State<ContactsList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context)
-              .push(
-                MaterialPageRoute(
-                  builder: (context) => ContactForm(),
-                ),
-              )
-              .then((value) => setState(() {}));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ContactForm(),
+            ),
+          ).then((value) => setState(() {}));
         },
         child: Icon(
           Icons.add,
@@ -71,10 +71,13 @@ class _ContactsListState extends State<ContactsList> {
 }
 
 class _ContactItem extends StatelessWidget {
-  final Function onClick;
   final Contact contact;
+  final Function onClick;
 
-  _ContactItem(this.contact, {@required this.onClick});
+  _ContactItem(
+    this.contact, {
+    @required this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {

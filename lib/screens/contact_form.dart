@@ -1,5 +1,5 @@
-import '../database/dao/contact_dao.dart';
-import '../models/contact.dart';
+import 'package:alura_crashlytics/database/dao/contact_dao.dart';
+import 'package:alura_crashlytics/models/contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactForm extends StatefulWidget {
