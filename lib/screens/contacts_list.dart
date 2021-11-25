@@ -1,4 +1,4 @@
-import 'package:bytebank/screens/transaction_form.dart';
+import 'transaction_form.dart';
 
 import '../components/progress.dart';
 import '../database/dao/contact_dao.dart';

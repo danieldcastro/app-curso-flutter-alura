@@ -1,4 +1,4 @@
-import 'package:bytebank/http/webclients/transaction_webclient.dart';
+import '../http/webclients/transaction_webclient.dart';
 
 import '../components/centered_message.dart';
 import '../components/progress.dart';

@@ -24,6 +24,7 @@ dependencies:
   http_interceptor: ^1.0.2
   path: null
   sqflite: null
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_test:
