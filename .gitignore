@@ -44,3 +44,4 @@ app.*.map.json
 /bytebank-api/database/
 
 /android/app/google-services.json
+.vscode/settings.json
