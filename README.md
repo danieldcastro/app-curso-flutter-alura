@@ -1,3 +1,3 @@
-# Alura Bytebank Crashlytics
+# Flutter Alura - Primeiro projeto
 
-Projeto do curso de Firebase Crashlytics da [Alura](https://www.alura.com.br/).
+Projeto 1 da trilha de Flutter da [Alura](https://www.alura.com.br/).
