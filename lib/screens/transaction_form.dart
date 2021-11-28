@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:alura_crashlytics/components/progress.dart';
-import 'package:alura_crashlytics/components/response_dialog.dart';
-import 'package:alura_crashlytics/components/transaction_auth_dialog.dart';
-import 'package:alura_crashlytics/http/webclients/transaction_webclient.dart';
-import 'package:alura_crashlytics/models/contact.dart';
-import 'package:alura_crashlytics/models/transaction.dart';
+import '../components/progress.dart';
+import '../components/response_dialog.dart';
+import '../components/transaction_auth_dialog.dart';
+import '../http/webclients/transaction_webclient.dart';
+import '../models/contact.dart';
+import '../models/transaction.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';

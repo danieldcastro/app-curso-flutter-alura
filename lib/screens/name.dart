@@ -1,13 +1,10 @@
+import '../components/container.dart';
+import '../models/name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NameCubit extends Cubit<String> {
-  NameCubit(String name) : super(name);
 
-  void change(String name) => emit(name);
-}
-
-class NameContainer extends StatelessWidget {
+class NameContainer extends BlocContainer {
   @override
   Widget build(BuildContext context) {
     return NameView();

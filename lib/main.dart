@@ -1,4 +1,4 @@
-import 'package:alura_crashlytics/screens/dashboard.dart';
+import 'screens/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'components/theme.dart';
-import 'screens/name.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

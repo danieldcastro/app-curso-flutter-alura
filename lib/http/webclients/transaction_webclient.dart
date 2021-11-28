@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:alura_crashlytics/http/webclient.dart';
-import 'package:alura_crashlytics/models/transaction.dart';
+import '../webclient.dart';
+import '../../models/transaction.dart';
 import 'package:http/http.dart';
 
 class TransactionWebClient {

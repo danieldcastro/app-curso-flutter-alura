@@ -1,7 +1,7 @@
-import 'package:alura_crashlytics/components/centered_message.dart';
-import 'package:alura_crashlytics/components/progress.dart';
-import 'package:alura_crashlytics/http/webclients/transaction_webclient.dart';
-import 'package:alura_crashlytics/models/transaction.dart';
+import '../components/centered_message.dart';
+import '../components/progress.dart';
+import '../http/webclients/transaction_webclient.dart';
+import '../models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsList extends StatelessWidget {

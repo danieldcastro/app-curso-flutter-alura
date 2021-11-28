@@ -1,9 +1,17 @@
-import 'package:alura_crashlytics/components/progress.dart';
-import 'package:alura_crashlytics/database/dao/contact_dao.dart';
-import 'package:alura_crashlytics/models/contact.dart';
-import 'package:alura_crashlytics/screens/contact_form.dart';
-import 'package:alura_crashlytics/screens/transaction_form.dart';
+import '../components/container.dart';
+import '../components/progress.dart';
+import '../database/dao/contact_dao.dart';
+import '../models/contact.dart';
+import 'contact_form.dart';
+import 'transaction_form.dart';
 import 'package:flutter/material.dart';
+
+class ContactsListContainer extends BlocContainer {
+  @override
+  Widget build(BuildContext context) {
+    return ContactsList();
+  }
+}
 
 class ContactsList extends StatefulWidget {
   @override
@@ -16,55 +24,60 @@ class _ContactsListState extends State<ContactsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Transfer'),
-      ),
-      body: FutureBuilder<List<Contact>>(
-        initialData: [],
-        future: _dao.findAll(),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              break;
-            case ConnectionState.waiting:
-              return Progress();
-              break;
-            case ConnectionState.active:
-              break;
-            case ConnectionState.done:
-              final List<Contact> contacts = snapshot.data;
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final Contact contact = contacts[index];
-                  return _ContactItem(
-                    contact,
-                    onClick: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => TransactionForm(contact),
-                        ),
-                      );
-                    },
-                  );
-                },
-                itemCount: contacts.length,
-              );
-              break;
-          }
-          return Text('Unknown error');
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => ContactForm(),
-            ),
-          ).then((value) => setState(() {}));
-        },
-        child: Icon(
-          Icons.add,
+        appBar: AppBar(
+          title: Text('Transfer'),
         ),
+        body: FutureBuilder<List<Contact>>(
+          initialData: [],
+          future: _dao.findAll(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                break;
+              case ConnectionState.waiting:
+                return Progress();
+                break;
+              case ConnectionState.active:
+                break;
+              case ConnectionState.done:
+                final List<Contact> contacts = snapshot.data;
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    final Contact contact = contacts[index];
+                    return _ContactItem(
+                      contact,
+                      onClick: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => TransactionForm(contact),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  itemCount: contacts.length,
+                );
+                break;
+            }
+            return Text('Unknown error');
+          },
+        ),
+        floatingActionButton: buildAddContactButton(context));
+  }
+
+  buildAddContactButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.of(context)
+            .push(
+              MaterialPageRoute(
+                builder: (context) => ContactForm(),
+              ),
+            )
+            .then((value) => setState(() {}));
+      },
+      child: Icon(
+        Icons.add,
       ),
     );
   }

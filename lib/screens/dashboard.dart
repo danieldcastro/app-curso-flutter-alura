@@ -1,10 +1,12 @@
-import 'package:alura_crashlytics/screens/contacts_list.dart';
-import 'package:alura_crashlytics/screens/name.dart';
-import 'package:alura_crashlytics/screens/transactions_list.dart';
+import '../components/container.dart';
+import '../models/name.dart';
+import 'contacts_list.dart';
+import 'name.dart';
+import 'transactions_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DashboardContainer extends StatelessWidget {
+class DashboardContainer extends BlocContainer {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -17,14 +19,11 @@ class DashboardContainer extends StatelessWidget {
 class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final name = context.read<NameCubit>().state;
-
     return Scaffold(
       appBar: AppBar(
-        title: BlocBuilder<NameCubit, String>(
-          builder: (context, state) => Text('Welcome, $state'),
-        )
-      ),
+          title: BlocBuilder<NameCubit, String>(
+        builder: (context, state) => Text('Welcome, $state'),
+      )),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,12 +62,8 @@ class DashboardView extends StatelessWidget {
     );
   }
 
-  void _showContactsList(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ContactsList(),
-      ),
-    );
+  void _showContactsList(BuildContext blocContext) {
+    push(blocContext, ContactsListContainer());
   }
 
   _showTransactionsList(BuildContext context) {
