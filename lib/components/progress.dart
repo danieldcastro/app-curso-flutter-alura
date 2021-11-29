@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Progress extends StatelessWidget {
+class ProgressView extends StatelessWidget {
   final String message;
 
-  Progress({
+  ProgressView({
     this.message = 'Loading',
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return 
+    Scaffold(
+      // appBar: AppBar(
+      //   title: Text('Processing')
+      // ),
+      body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,6 +26,6 @@ class Progress extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

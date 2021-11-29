@@ -56,14 +56,14 @@ class ContactsListContainer extends BlocContainer {
         cubit.reload(dao);
         return cubit;
       },
-      child: ContactsList(dao),
+      child: ContactsListView(dao),
     );
   }
 }
 
-class ContactsList extends StatelessWidget {
+class ContactsListView extends StatelessWidget {
   final ContactDao _dao;
-  ContactsList(this._dao);
+  ContactsListView(this._dao);
 
  
   @override
@@ -76,7 +76,7 @@ class ContactsList extends StatelessWidget {
           builder: (context, state) {
             if (state is InitContactsListState ||
                 state is LoadingContactsListState) {
-              return Progress();
+              return ProgressView();
             }
             if (state is LoadedContactsListState) {
               final contacts = state._contacts;
@@ -86,11 +86,7 @@ class ContactsList extends StatelessWidget {
                   return _ContactItem(
                     contact,
                     onClick: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => TransactionForm(contact),
-                        ),
-                      );
+                      push(context, TransactionFormContainer(contact));
                     },
                   );
                 },
